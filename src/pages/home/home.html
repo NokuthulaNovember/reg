@@ -1,14 +1,135 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>
-      Ionic Blank
-    </ion-title>
+    <ion-title>Registration</ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
-</ion-content>
+
+<ion-content class="img" no-lines no-padding>
+
+      <div id="register">
+              <form [formGroup]="form" (ngSubmit)="formSubmit(userFG)">
+
+                      <ion-list class="img" no-lines no-padding>
+
+                          <ion-item class="img">
+                   
+                              <ion-label style="color:rgb(218, 197, 223)" stacked>Name</ion-label>
+                              <ion-input formControlName="name" type="text">
+                   
+                              </ion-input>
+                   
+                              </ion-item>
+                              <ion-item class="img" no-lines no-padding *ngIf="form.controls['name'].invalid">
+                   
+                                      <p ion-text color="danger" class="img" no-lines no-padding> *maximum of 2 characters</p>
+                                     
+                                     
+                                     </ion-item>
+                   
+                   
+                   <ion-item class="img" no-lines no-padding>
+                   
+                    <ion-label style="color:rgb(218, 197, 223)"stacked>Username</ion-label>
+                    <ion-input formControlName="username" type="text">
+                    </ion-input>
+                   </ion-item>
+                   
+                    <ion-item class="img" no-lines no-padding *ngIf="form.controls['username'].invalid">
+                   
+                    <p ion-text color="danger" class="img" no-lines no-padding> *maximum of 8 characters</p>
+                   
+                   
+                   </ion-item>
+                   
+                   
+                   
+                   <ion-item class="img" no-lines no-padding>
+                            <ion-label  style="color:rgb(218, 197, 223)"stacked>password</ion-label>
+                            <ion-input formControlName="password" type="password"></ion-input>
+                   
+                            </ion-item>
+                   
+                            <ion-item class="img" no-lines no-padding *ngIf="form.controls['password'].invalid">
+                   
+                                <p ion-text color="danger" class="img" no-lines no-padding> *6 characters, letter and number</p>
+                              
+                                </ion-item>
+                           
+         
+                      
+                    
+              
+       <div
+          formArrayName="Skills"
+          margin-bottom>
+
+
+            <section
+               [formGroupName]="i"
+               *ngFor="let skill of form.controls.Skills.controls; let i = index">
+               <ion-item class="img" no-lines no-padding>
+                      <ion-label  style="color:rgb(218, 197, 223)" stacked>skills {{ i + 1 }}</ion-label>
+                      <br> <br>
+                      <ion-input class="input-box"
+                         type="text"
+                         maxlength="50"
+                         FormControlName=" SkillsName"></ion-input>
+                         <br>
+                   </ion-item>
+                            <ion-item class="img" no-lines no-padding>
+                  <ion-label style="color:rgb(218, 197, 223)" stacked>Level {{ i + 1 }}  </ion-label>
+                  <br>
+                  <ion-input class="input-box"
+                     type="text"
+                     maxlength="50"
+                     FormControlName=" SkillsLevel"></ion-input>
+                     <br>
+               </ion-item>
+
+
+                  <span
+                     float-right
+                     ion-button
+                     icon-left
+                     clear
+                     *ngIf="form.controls.Skills.length > 1"
+                     (click)="removeInputField(i)">
+                     <ion-icon name="close" class="p"></ion-icon>
+                     <p class="p" > Remove</p>
+                  </span>
+            
+            </section>
+         </div>
+
+
+         
+         <span
+            ion-button
+            float-left
+            icon-left
+            clear
+            (click)="addNewInputField()">
+               <ion-icon name="add" class="p"></ion-icon>
+              <p class="p" > Add a new Skill</p>
+         </span>
+
+<ion-item class="img" no-lines no-padding>
+         <button ion-button class="p" color="light" text-center
+
+         [disabled]="!form.valid">Submit</button>
+        </ion-item>
+         <!-- <button
+          ion-button
+          block
+          margin-top
+          color="primary"
+          text-center
+          [disabled]="!form.valid">Submit</button> -->
+      </ion-list>
+  </form>
+  </div>
+          </ion-content>
+
+
+
